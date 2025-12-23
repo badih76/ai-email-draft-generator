@@ -41,7 +41,8 @@ export async function POST(request: NextRequest) {
 
     // 2. Call the Gemini model
     const response = await ai.models.generateContent({
-        model: 'gemini-2.5-flash', // A fast, high-quality model for text generation
+        // model: 'gemini-2.5-flash', // A fast, high-quality model for text generation
+        model: 'gemini-2.5-flash-lite',
         contents: prompt,
     });
 
