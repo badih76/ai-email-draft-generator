@@ -69,7 +69,8 @@ export async function POST(request: NextRequest) {
 
     // Return a generic 500 server error response
     return NextResponse.json(
-      { error: 'An internal server error occurred during AI generation. Check API key and service status.', keys: { geminiKey: geminiKey, openAiKey: openAiKey } },
+      { error: 'An internal server error occurred during AI generation. ' + error, 
+        keys: { geminiKey: geminiKey, openAiKey: openAiKey } },
       { status: 500 }
     );
   }
