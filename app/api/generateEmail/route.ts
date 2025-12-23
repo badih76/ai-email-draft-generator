@@ -63,14 +63,10 @@ export async function POST(request: NextRequest) {
   } catch (error) {
     // Log the error for debugging purposes
     console.error('AI Generation Error:', (error as Error).stack );
-    
-    const geminiKey = process.env.GEMINI_API_KEY as string;
-    const openAiKey = process.env.OPENAI_API_KEY as string;
 
     // Return a generic 500 server error response
     return NextResponse.json(
-      { error: 'An internal server error occurred during AI generation. ' + (error as Error).stack, 
-        keys: { geminiKey: geminiKey, openAiKey: openAiKey } },
+      { error: 'An internal server error occurred during AI generation. ' + error },
       { status: 500 }
     );
   }
