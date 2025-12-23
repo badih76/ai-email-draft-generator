@@ -17,6 +17,7 @@ interface EmailDraftRequest {
 
 export async function POST(request: NextRequest) {
   // Ensure the request is handled within a try-catch block for robustness
+  
   try {
     const { userRole, recipientRole, tone, details }: EmailDraftRequest = await request.json();
 
@@ -63,9 +64,12 @@ export async function POST(request: NextRequest) {
     // Log the error for debugging purposes
     console.error('AI Generation Error:', error);
     
+    const geminiKey = process.env.GEMINI_API_KEY as string;
+    const openAiKey = process.env.OPENAI_API_KEY as string;
+
     // Return a generic 500 server error response
     return NextResponse.json(
-      { error: 'An internal server error occurred during AI generation. Check API key and service status.' },
+      { error: 'An internal server error occurred during AI generation. Check API key and service status.', keys: { geminiKey: geminiKey, openAiKey: openAiKey } },
       { status: 500 }
     );
   }
