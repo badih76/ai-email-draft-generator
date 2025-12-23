@@ -62,7 +62,7 @@ export async function POST(request: NextRequest) {
 
   } catch (error) {
     // Log the error for debugging purposes
-    console.error('AI Generation Error:', error);
+    console.error('AI Generation Error:', (error as Error).stack);
     
     const geminiKey = process.env.GEMINI_API_KEY as string;
     const openAiKey = process.env.OPENAI_API_KEY as string;
